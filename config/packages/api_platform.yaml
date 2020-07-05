@@ -1,0 +1,21 @@
+api_platform:
+    title: '%app.title%'
+
+    description: '%app.description%'
+
+    version: '%app.version%'
+
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+
+    patch_formats:
+        json: ['application/merge-patch+json']
+
+    swagger:
+        versions: [3]
+
+    collection:
+        pagination:
+            client_items_per_page: true
+            maximum_items_per_page: 60
+            items_per_page_parameter_name: 'perPage'
