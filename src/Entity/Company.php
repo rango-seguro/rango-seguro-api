@@ -46,7 +46,6 @@ class Company
     private $rating;
 
     /**
-     * @Groups({"company_read"})
      * @ORM\Column(type="integer", options={"default":0})
      */
     private $score;
@@ -143,6 +142,24 @@ class Company
      * @ORM\JoinColumn(nullable=false)
      */
     private $address;
+
+    /**
+     * @Groups({"company_read"})
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @Groups({"company_read"})
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $area;
+
+    /**
+     * @Groups({"company_read"})
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $customers;
 
     public static function create()
     {
@@ -530,6 +547,52 @@ class Company
     public function setAddress(Address $address): self
     {
         $this->address = $address;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * @Groups({"company_read"})
+     * @return int|null
+     */
+    public function getProgress(): ?int
+    {
+        //TODO: Use the score to calculates this percentage
+        return rand(60, 100);
+    }
+
+    public function getArea(): ?int
+    {
+        return $this->area;
+    }
+
+    public function setArea(?int $area): self
+    {
+        $this->area = $area;
+
+        return $this;
+    }
+
+    public function getCustomers(): ?int
+    {
+        return $this->customers;
+    }
+
+    public function setCustomers(?int $customers): self
+    {
+        $this->customers = $customers;
 
         return $this;
     }
